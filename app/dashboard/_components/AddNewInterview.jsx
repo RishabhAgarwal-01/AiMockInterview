@@ -35,10 +35,10 @@ function AddNewInterview() {
         e.preventDefault();
         console.log(jobPosition, jobDesc, jobExperience);
 
-        const InputPrompt = `Job Position: ${jobPosition}, Job Description: ${jobDesc}, Job Experience: ${jobExperience}. Depending on Job Position, Job Description & Job Experience, give us ${process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT} interview questions along with answers in JSON format. Give Questions and Answers as fields in JSON.`;
+        const InputPrompt = `Job Position: ${jobPosition}, Job Description: ${jobDesc}, Job Experience: ${jobExperience}. Depending on Job Position, Job Description & Job Experience, give us ${process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT} interview questions along with answers in JSON format. Give Questions as field and Answers as fields seperatey in JSON.`;
         const result = await chatSession.sendMessage(InputPrompt);
             const MockJsonResp = (result.response.text()).replace('```json', '').replace('```', '');
-            // console.log(MockJsonResp);
+            console.log("MockJsonResp:", MockJsonResp);
             setJsonResponse(MockJsonResp);
             if(MockJsonResp){
                 const resp= await db.insert(MockInterview).values({
@@ -50,10 +50,10 @@ function AddNewInterview() {
                     createdBy:user?.primaryEmailAddress?.emailAddress,
                     createdAt:moment().format('DD-MM-YYYY')
                 }).returning({mockId:MockInterview.mockId});
-                console.log("Inserted Id", resp);
+                // console.log("Inserted Id", resp);
                 if(resp){
                     setOpenDialog(false);
-                    console.log(resp[0]?.mockId)
+                    // console.log(resp[0]?.mockId)
                     router.push(`/dashboard/interview/${resp[0]?.mockId}`);
                 }
             }
