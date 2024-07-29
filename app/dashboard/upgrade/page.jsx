@@ -1,7 +1,11 @@
+"use client";
+
 import planData from '@/utils/planData'
+import { useUser } from '@clerk/nextjs';
 import React from 'react'
 
 function Upgrade() {
+  const {user}= useUser();
   return (
     <div className='p-10 bg-gray-50'>
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -42,7 +46,7 @@ function Upgrade() {
               </ul>
 
               <a
-                href={item.price === 0 ? '/' : item.link}
+                href={item.price === 0 ? '/' : item.link+'?prefilled_email='+user?.primaryEmailAddress.emailAddress}
                 target={item.price === 0 ? undefined : "_blank"} // Open payment link in a new tab
                 rel={item.price === 0 ? undefined : "noopener noreferrer"} // Security for new tab links
                 className="mt-8 block rounded-full border border-indigo-600 bg-white px-12 py-3 text-center text-sm font-medium text-indigo-600 hover:ring-1 hover:ring-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
