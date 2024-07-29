@@ -18,7 +18,7 @@ export default[
     {
         link: 'https://buy.stripe.com/test_fZecMS5phf4D25OeUW',
         price:3.55,
-        priceId:'price_1PhyN1RvF9kmNHODoAqsAwy9',
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
         duration: 'Monthly',
         offering:[
             {
