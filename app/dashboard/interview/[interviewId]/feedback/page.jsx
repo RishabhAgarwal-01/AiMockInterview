@@ -15,8 +15,10 @@ import { useRouter } from 'next/navigation';
   
 function Feedback({params}) {
     const [feedbackList, setFeedbackList]= useState();
+    const [averageRating, setAverageRating] = useState(0);
     const router= useRouter();
-
+    
+    console.log(averageRating)
     useEffect(()=>{
         GetFeedback();
     },[])
@@ -29,7 +31,21 @@ function Feedback({params}) {
 
       console.log(result);
       setFeedbackList(result);
+      calculateAverageRating(result);
     }
+
+    const calculateAverageRating = (feedbackList) => {
+      if (feedbackList.length > 0) {
+          const totalRating = feedbackList.reduce((acc, item) => {
+              console.log("Rating for item:", item.rating);
+              return acc + parseFloat(item.rating);
+          }, 0);
+          const average = totalRating / feedbackList.length;
+          console.log(feedbackList.length)
+          console.log("Total rating:", totalRating, "Average rating:", average);
+          setAverageRating(average.toFixed(1)); // Adjust the decimal places as needed
+      }
+  };
 
   return (
     <div className='p-10'>
@@ -41,7 +57,7 @@ function Feedback({params}) {
          <>
          <h2 className='text-3xl font-bold text-green-500'>Congratulation</h2>
          <h2 className='font-bold text-2xl'>Here is your interview feedback</h2>
-        <h2 className='text-primary text-lg my-3'>Your overall interview rating: <strong>7/10</strong></h2>
+        <h2 className='text-primary text-lg my-3'>Your overall interview rating: <strong>{averageRating ? averageRating: "7/10"}/10</strong></h2>
 
        <h2 className='text-sm text-gray-500'>Find below interview question with correct answer, your answer and feedback for improvement</h2>
        {feedbackList && feedbackList.map((item, index)=>(
