@@ -9,7 +9,7 @@ import InterviewItemCard from './InterviewItemCard';
 
 function InterviewList() {
     const [interviewList, setInterviewList]= useState([]);
-    console.log("interviewList:", interviewList);
+    // console.log("interviewList:", interviewList);
     const {user}= useUser();
 
     useEffect(()=>{
@@ -21,7 +21,7 @@ function InterviewList() {
     .from(MockInterview)
     .where(eq(MockInterview.createdBy, user?.primaryEmailAddress.emailAddress))
     .orderBy(desc(MockInterview.id))
-    console.log(result);
+    // console.log(result);
     setInterviewList(result);
   }
 

@@ -13,7 +13,7 @@ const [interviewData, setInterviewData] = useState();
 const[mockInterviewQuestion, setMockInterviewQuestion]= useState([]);
 const [mockInterviewAnswer, setMockInterviewAnswer]= useState([]);
 const [activeQuestionIndex, setActiveQuestionIndex]= useState(0);
-console.log(mockInterviewQuestion[activeQuestionIndex])
+// console.log(mockInterviewQuestion[activeQuestionIndex])
 // console.log(mockInterviewAnswer[activeQuestionIndex]);
 useEffect(()=>{
     GetInterviewDetails();
@@ -29,7 +29,7 @@ const GetInterviewDetails = async () => {
     // console.log("jsonMockResponse",jsonMockResponse.questions);
     setMockInterviewQuestion(jsonMockResponse.questions);
     setMockInterviewAnswer(jsonMockResponse.answers);
-    console.log(result[0]);
+    // console.log(result[0]);
     setInterviewData(result[0]);
 };
 

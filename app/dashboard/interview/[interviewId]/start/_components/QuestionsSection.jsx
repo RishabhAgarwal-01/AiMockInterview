@@ -2,7 +2,7 @@ import { Lightbulb, Volume2 } from 'lucide-react'
 import React from 'react'
 
 function QuestionsSection({mockInterviewQuestion, activeQuestionIndex}) {
-console.log(mockInterviewQuestion[activeQuestionIndex])
+// console.log(mockInterviewQuestion[activeQuestionIndex])
 
 const texttoSpeech = (text)=>{
   if('speechSynthesis' in window){

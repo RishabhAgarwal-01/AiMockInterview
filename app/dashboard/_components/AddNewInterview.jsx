@@ -33,12 +33,12 @@ function AddNewInterview() {
     const onSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
-        console.log(jobPosition, jobDesc, jobExperience);
+        // console.log(jobPosition, jobDesc, jobExperience);
 
         const InputPrompt = `Job Position: ${jobPosition}, Job Description: ${jobDesc}, Job Experience: ${jobExperience}. Depending on Job Position, Job Description & Job Experience, give us ${process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT} interview questions along with answers in JSON format. Give questions as field and answers as fields seperatey in JSON.`;
         const result = await chatSession.sendMessage(InputPrompt);
             const MockJsonResp = (result.response.text()).replace('```json', '').replace('```', '');
-            console.log("MockJsonResp:", MockJsonResp);
+            // console.log("MockJsonResp:", MockJsonResp);
             setJsonResponse(MockJsonResp);
             if(MockJsonResp){
                 const resp= await db.insert(MockInterview).values({

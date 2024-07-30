@@ -18,7 +18,7 @@ function Feedback({params}) {
     const [averageRating, setAverageRating] = useState(0);
     const router= useRouter();
     
-    console.log(averageRating)
+    // console.log(averageRating)
     useEffect(()=>{
         GetFeedback();
     },[])
@@ -29,7 +29,7 @@ function Feedback({params}) {
       .where(eq(UserAnswer.mockIdRef, params.interviewId))
       .orderBy(UserAnswer.id)
 
-      console.log(result);
+      // console.log(result);
       setFeedbackList(result);
       calculateAverageRating(result);
     }
@@ -37,12 +37,12 @@ function Feedback({params}) {
     const calculateAverageRating = (feedbackList) => {
       if (feedbackList.length > 0) {
           const totalRating = feedbackList.reduce((acc, item) => {
-              console.log("Rating for item:", item.rating);
+              // console.log("Rating for item:", item.rating);
               return acc + parseFloat(item.rating);
           }, 0);
           const average = totalRating / feedbackList.length;
-          console.log(feedbackList.length)
-          console.log("Total rating:", totalRating, "Average rating:", average);
+          // console.log(feedbackList.length)
+          // console.log("Total rating:", totalRating, "Average rating:", average);
           setAverageRating(average.toFixed(1)); // Adjust the decimal places as needed
       }
   };

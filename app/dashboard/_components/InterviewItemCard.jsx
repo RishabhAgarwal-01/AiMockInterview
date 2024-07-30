@@ -13,7 +13,7 @@ function InterviewItemCard({interview}) {
   const onFeedbackPress=()=>{
     router.push(`./dashboard/interview/${interview?.mockId}/feedback`)
   }
-    console.log(interview?.jsonMockResp)
+    // console.log(interview?.jsonMockResp)
     return (
     <div className='border shadow-sm rounded-lg p-3'>
        <h2 className='font-bold text-primary'>{interview?.jobPosition}</h2>
