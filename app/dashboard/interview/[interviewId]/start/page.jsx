@@ -13,7 +13,7 @@ const [interviewData, setInterviewData] = useState();
 const[mockInterviewQuestion, setMockInterviewQuestion]= useState([]);
 const [mockInterviewAnswer, setMockInterviewAnswer]= useState([]);
 const [activeQuestionIndex, setActiveQuestionIndex]= useState(0);
-// console.log(mockInterviewQuestion[activeQuestionIndex])
+console.log(mockInterviewQuestion[activeQuestionIndex])
 // console.log(mockInterviewAnswer[activeQuestionIndex]);
 useEffect(()=>{
     GetInterviewDetails();
@@ -34,7 +34,7 @@ const GetInterviewDetails = async () => {
 };
 
 const handleNextQuestion = () => {
-    if (activeQuestionIndex < mockInterviewQuestion.length - 1) {
+    if (activeQuestionIndex < mockInterviewQuestion?.length - 1) {
       setActiveQuestionIndex(activeQuestionIndex + 1);
     }
   }
@@ -61,7 +61,7 @@ const handleNextQuestion = () => {
             interviewData={interviewData}
             onNextQuestion={handleNextQuestion}
             onPrevQuestion={handlePrevQuestion}
-            totalQuestions={mockInterviewQuestion.length}
+            totalQuestions={mockInterviewQuestion?.length}
             />
         </div>
         {/* <div className='flex justify-end gap-6'>
